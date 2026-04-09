@@ -184,11 +184,21 @@ body {
 .filter-bar {
   display: flex;
   gap: 10px;
-  margin-bottom: 56px;
+  margin-bottom: 24px;
   flex-wrap: wrap;
   justify-content: center;
   opacity: 0;
   animation: fadeUp 0.6s 0.1s ease forwards;
+}
+
+.photo-note {
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 48px;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.2s ease forwards;
 }
 
 .filter-btn {
@@ -254,7 +264,9 @@ body {
   background: var(--card-bg);
   border: 1.5px solid var(--border);
   border-radius: 16px;
-  padding: 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
   position: relative;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
@@ -265,16 +277,17 @@ body {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 3px;
+  height: 4px;
   background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
+  z-index: 20;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(26,18,8,0.12);
+  box-shadow: 0 16px 40px rgba(26,18,8,0.12);
   border-color: transparent;
 }
 
@@ -286,31 +299,41 @@ body {
 .card.special::before { background: var(--gold); }
 
 .card-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 14px;
+  position: relative;
+  width: 100%;
+  height: 220px;
+  margin-bottom: 0;
+  overflow: hidden;
 }
 
-.card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  flex-shrink: 0;
+.img-icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  object-fit: cover;
+  border: none;
+  box-shadow: none;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.card-icon.cafe { background: rgba(196,98,45,0.1); }
-.card-icon.drink { background: rgba(122,158,126,0.1); }
-.card-icon.special { background: rgba(201,168,76,0.1); }
+.card:hover .img-icon {
+  transform: scale(1.08);
+}
 
 .card-rating {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(26,18,8,0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 6px 14px;
+  border-radius: 100px;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
+  z-index: 10;
 }
 
 .stars {
@@ -322,16 +345,17 @@ body {
 .rating-num {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--cream);
 }
 
 .card-name {
   font-family: 'Zen Kaku Gothic New', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 900;
   color: var(--ink);
   line-height: 1.3;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  padding: 24px 28px 0;
 }
 
 .card-desc {
@@ -339,7 +363,8 @@ body {
   font-size: 0.87rem;
   color: var(--muted);
   line-height: 1.7;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  padding: 0 28px;
 }
 
 .card-meta {
@@ -347,6 +372,7 @@ body {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: auto;
+  padding: 0 28px;
 }
 
 .meta-chip {
@@ -383,8 +409,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 100%;
-  margin-top: 20px;
+  width: calc(100% - 56px);
+  margin: 24px 28px 28px;
   padding: 12px;
   background: var(--ink);
   color: var(--cream);
@@ -543,6 +569,7 @@ footer {
     <button class="filter-btn" data-filter="drink">昼飲み</button>
     <button class="filter-btn" data-filter="special">変わり種</button>
   </div>
+  <p class="photo-note">※掲載している写真はイメージです。</p>
 
   <!-- CAFE SECTION -->
   <div class="section-header fade-in">
@@ -555,7 +582,7 @@ footer {
 
     <div class="card cafe fade-in" data-type="cafe">
       <div class="card-top">
-        <div class="card-icon cafe">☕</div>
+        <img class="img-icon" src="img/icon_hayakawa_1775743239675.png" alt="HAYAKAWA coffee">
         <div class="card-rating">
           <span class="stars">★★★★★</span>
           <span class="rating-num">4.9</span>
@@ -576,7 +603,7 @@ footer {
 
     <div class="card cafe fade-in" data-type="cafe">
       <div class="card-top">
-        <div class="card-icon cafe">⏱</div>
+        <img class="img-icon" src="img/icon_tokicafe_1775743270440.png" alt="トキカフェ神楽坂">
         <div class="card-rating">
           <span class="stars">★★★★☆</span>
           <span class="rating-num">4.1</span>
@@ -597,7 +624,7 @@ footer {
 
     <div class="card cafe fade-in" data-type="cafe">
       <div class="card-top">
-        <div class="card-icon cafe">🌊</div>
+        <img class="img-icon" src="img/icon_canal_1775743286659.png" alt="Canal Cafe">
         <div class="card-rating">
           <span class="stars">★★★★☆</span>
           <span class="rating-num">3.9</span>
@@ -618,7 +645,7 @@ footer {
 
     <div class="card cafe fade-in" data-type="cafe">
       <div class="card-top">
-        <div class="card-icon cafe">🌿</div>
+        <img class="img-icon" src="img/icon_royalgarden_1775743304523.png" alt="Royal Garden Cafe">
         <div class="card-rating">
           <span class="stars">★★★★☆</span>
           <span class="rating-num">3.8</span>
@@ -639,7 +666,7 @@ footer {
 
     <div class="card cafe fade-in" data-type="cafe">
       <div class="card-top">
-        <div class="card-icon cafe">🍵</div>
+        <img class="img-icon" src="img/icon_shinano_1775743323998.png" alt="Shinano Cafe.">
         <div class="card-rating">
           <span class="stars">★★★★☆</span>
           <span class="rating-num">4.4</span>
@@ -660,7 +687,7 @@ footer {
 
     <div class="card cafe fade-in" data-type="cafe">
       <div class="card-top">
-        <div class="card-icon cafe">🍓</div>
+        <img class="img-icon" src="img/icon_kajitsuen_1775743339485.png" alt="果実園リーベル">
         <div class="card-rating">
           <span class="stars">★★★☆☆</span>
           <span class="rating-num">3.3</span>
@@ -692,7 +719,7 @@ footer {
 
     <div class="card drink fade-in" data-type="drink">
       <div class="card-top">
-        <div class="card-icon drink">🥐</div>
+        <img class="img-icon" src="img/icon_bar1363_1775743353826.png" alt="CAFE & BAR 1363">
         <div class="card-rating">
           <span class="stars">★★★★☆</span>
           <span class="rating-num">4.0</span>
@@ -713,7 +740,7 @@ footer {
 
     <div class="card drink fade-in" data-type="drink">
       <div class="card-top">
-        <div class="card-icon drink">🍺</div>
+        <img class="img-icon" src="img/icon_yebisu_1775743369162.png" alt="Yebisu Bar 神楽坂">
         <div class="card-rating">
           <span class="stars">★★★★☆</span>
           <span class="rating-num">3.9</span>
@@ -734,7 +761,7 @@ footer {
 
     <div class="card drink fade-in" data-type="drink">
       <div class="card-top">
-        <div class="card-icon drink">🥂</div>
+        <img class="img-icon" src="img/icon_rupo_1775743382767.png" alt="Private dining bar Rupo">
         <div class="card-rating">
           <span class="stars">★★★★☆</span>
           <span class="rating-num">4.2</span>
@@ -755,7 +782,7 @@ footer {
 
     <div class="card drink fade-in" data-type="drink">
       <div class="card-top">
-        <div class="card-icon drink">🐔</div>
+        <img class="img-icon" src="img/icon_toricho_1775743400147.png" alt="酒ぐら 鳥兆 飯田橋">
         <div class="card-rating">
           <span class="stars">★★★★☆</span>
           <span class="rating-num">4.0</span>
@@ -776,7 +803,7 @@ footer {
 
     <div class="card drink fade-in" data-type="drink">
       <div class="card-top">
-        <div class="card-icon drink">🍝</div>
+        <img class="img-icon" src="img/icon_strada_1775743414087.png" alt="イタリアン Strada">
         <div class="card-rating">
           <span class="stars">★★★★☆</span>
           <span class="rating-num">4.3</span>
@@ -797,7 +824,7 @@ footer {
 
     <div class="card drink fade-in" data-type="drink">
       <div class="card-top">
-        <div class="card-icon drink">🇫🇷</div>
+        <img class="img-icon" src="img/icon_atypique_1775743432962.png" alt="アティピック (Atypique)">
         <div class="card-rating">
           <span class="stars">★★★★★</span>
           <span class="rating-num">4.8</span>
@@ -818,7 +845,7 @@ footer {
 
     <div class="card drink fade-in" data-type="drink">
       <div class="card-top">
-        <div class="card-icon drink">✂️</div>
+        <img class="img-icon" src="img/icon_franks_1775743444475.png" alt="FRANK'S BARBE(E)R THE STAND.">
         <div class="card-rating">
           <span class="stars">★★★★★</span>
           <span class="rating-num">4.7</span>
@@ -850,7 +877,7 @@ footer {
 
     <div class="card special fade-in" data-type="special">
       <div class="card-top">
-        <div class="card-icon special">💨</div>
+        <img class="img-icon" src="img/icon_yolo_1775743457594.png" alt="YOLO cafe&bar">
         <div class="card-rating">
           <span class="stars">★★★★★</span>
           <span class="rating-num">4.9</span>
