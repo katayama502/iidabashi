@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>飯田橋・神楽坂 昼カフェ＆昼飲みガイド</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Shippori+Mincho:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1208;
+  --cream: #f5f0e8;
+  --warm: #e8dcc8;
+  --accent: #c4622d;
+  --accent2: #7a9e7e;
+  --gold: #c9a84c;
+  --muted: #8a7b6a;
+  --card-bg: #faf7f2;
+  --border: #d4c9b5;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- HERO --- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(196,98,45,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 30%, rgba(122,158,126,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 80%, rgba(201,168,76,0.10) 0%, transparent 50%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245,240,232,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,240,232,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.hero-eyebrow {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  margin-bottom: 24px;
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s ease forwards;
+}
+
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: '—';
+  margin: 0 12px;
+  opacity: 0.6;
+}
+
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  color: var(--cream);
+  line-height: 0.95;
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s ease forwards;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-sub {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 1.1rem;
+  color: rgba(245,240,232,0.55);
+  margin-top: 28px;
+  letter-spacing: 0.08em;
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s ease forwards;
+}
+
+.hero-tags {
+  display: flex;
+  gap: 12px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s ease forwards;
+}
+
+.hero-tag {
+  background: rgba(245,240,232,0.08);
+  border: 1px solid rgba(245,240,232,0.15);
+  color: rgba(245,240,232,0.7);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  padding: 7px 18px;
+  border-radius: 100px;
+  cursor: default;
+  transition: all 0.25s;
+}
+
+.hero-tag:hover {
+  background: rgba(196,98,45,0.25);
+  border-color: var(--accent);
+  color: var(--cream);
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s 1.2s ease forwards;
+}
+
+.scroll-hint span {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: rgba(245,240,232,0.35);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(245,240,232,0.35), transparent);
+  animation: scrollAnim 1.8s infinite;
+}
+
+/* --- MAIN CONTENT --- */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 24px 120px;
+}
+
+/* --- FILTER BAR --- */
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.1s ease forwards;
+}
+
+.filter-btn {
+  padding: 9px 22px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.filter-btn.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--cream);
+}
+
+/* --- SECTION HEADER --- */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1.5px solid var(--border);
+}
+
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.2rem;
+  color: var(--ink);
+}
+
+.section-emoji {
+  font-size: 1.8rem;
+}
+
+.section-count {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+}
+
+/* --- CARDS GRID --- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 80px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(26,18,8,0.12);
+  border-color: transparent;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card.drink::before { background: var(--accent2); }
+.card.special::before { background: var(--gold); }
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.card-icon.cafe { background: rgba(196,98,45,0.1); }
+.card-icon.drink { background: rgba(122,158,126,0.1); }
+.card-icon.special { background: rgba(201,168,76,0.1); }
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stars {
+  color: var(--gold);
+  font-size: 0.75rem;
+  letter-spacing: -1px;
+}
+
+.rating-num {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.card-name {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.card-desc {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 0.87rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.73rem;
+  padding: 4px 11px;
+  border-radius: 100px;
+  letter-spacing: 0.05em;
+}
+
+.meta-chip.time {
+  background: rgba(196,98,45,0.08);
+  color: var(--accent);
+  border: 1px solid rgba(196,98,45,0.2);
+}
+
+.meta-chip.tag {
+  background: rgba(122,158,126,0.08);
+  color: var(--accent2);
+  border: 1px solid rgba(122,158,126,0.2);
+}
+
+.meta-chip.close {
+  background: rgba(201,168,76,0.08);
+  color: #987a25;
+  border: 1px solid rgba(201,168,76,0.2);
+}
+
+/* --- HIGHLIGHT BOX --- */
+.highlight-box {
+  background: var(--ink);
+  border-radius: 20px;
+  padding: 48px;
+  color: var(--cream);
+  margin-top: 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight-box::before {
+  content: '"';
+  position: absolute;
+  top: -20px; right: 40px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 18rem;
+  color: rgba(245,240,232,0.03);
+  line-height: 1;
+}
+
+.highlight-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  margin-bottom: 24px;
+  color: var(--gold);
+}
+
+.rec-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.rec-item {
+  border-left: 2px solid rgba(245,240,232,0.15);
+  padding-left: 18px;
+}
+
+.rec-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  color: var(--cream);
+}
+
+.rec-why {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 0.82rem;
+  color: rgba(245,240,232,0.55);
+  line-height: 1.6;
+}
+
+/* --- FOOTER --- */
+footer {
+  text-align: center;
+  padding: 48px 24px;
+  border-top: 1.5px solid var(--border);
+  font-family: 'Shippori Mincho', serif;
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollAnim {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* hidden by filter */
+.card.hidden {
+  display: none;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 600px) {
+  .hero-title { font-size: 3.2rem; }
+  .highlight-box { padding: 32px 24px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 1.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <p class="hero-eyebrow">飯田橋・神楽坂エリア</p>
+  <h1 class="hero-title">Café &amp;<br><em>Daytime</em><br>Drinks</h1>
+  <p class="hero-sub">昼間2時間のための、とっておきのスポット14選</p>
+  <div class="hero-tags">
+    <span class="hero-tag">☕ スペシャルティコーヒー</span>
+    <span class="hero-tag">🍺 昼飲みOK</span>
+    <span class="hero-tag">🌿 テラス席</span>
+    <span class="hero-tag">🕐 時間制カフェ</span>
+    <span class="hero-tag">🍷 ランチワイン</span>
+  </div>
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- FILTER -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">すべて</button>
+    <button class="filter-btn" data-filter="cafe">カフェ</button>
+    <button class="filter-btn" data-filter="drink">昼飲み</button>
+    <button class="filter-btn" data-filter="special">変わり種</button>
+  </div>
+
+  <!-- CAFE SECTION -->
+  <div class="section-header fade-in">
+    <span class="section-emoji">☕</span>
+    <h2 class="section-title">カフェ・ゆっくり系</h2>
+    <span class="section-count">6 SPOTS</span>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card cafe fade-in" data-type="cafe">
+      <div class="card-top">
+        <div class="card-icon cafe">☕</div>
+        <div class="card-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-num">4.9</span>
+        </div>
+      </div>
+      <div class="card-name">HAYAKAWA coffee</div>
+      <div class="card-desc">飯田橋の名物スペシャルティコーヒー店。こだわり豆のコールドブリューやカフェオレが絶品。オーナーの丁寧な接客と落ち着いた空間で、蜜月気分を味わえる。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 7:30〜16:30</span>
+        <span class="meta-chip tag">火水定休</span>
+        <span class="meta-chip tag">スペシャルティ</span>
+      </div>
+    </div>
+
+    <div class="card cafe fade-in" data-type="cafe">
+      <div class="card-top">
+        <div class="card-icon cafe">⏱</div>
+        <div class="card-rating">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-num">4.1</span>
+        </div>
+      </div>
+      <div class="card-name">トキカフェ神楽坂</div>
+      <div class="card-desc">時間制（ドリンク飲み放題）の作業・休憩向けカフェ。1日パスポートで丸ごと滞在もOK。マッサージチェアやリクライナーもあり、本格リラックスに。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 9:00〜22:30</span>
+        <span class="meta-chip tag">飲み放題</span>
+        <span class="meta-chip tag">作業OK</span>
+      </div>
+    </div>
+
+    <div class="card cafe fade-in" data-type="cafe">
+      <div class="card-top">
+        <div class="card-icon cafe">🌊</div>
+        <div class="card-rating">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-num">3.9</span>
+        </div>
+      </div>
+      <div class="card-name">Canal Cafe</div>
+      <div class="card-desc">外濠沿いのテラス席が圧巻のロケーション。水辺を眺めながらピザやパスタでゆったりランチを。晴れた日は特別な開放感に包まれる。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 11:30〜22:00</span>
+        <span class="meta-chip close">月曜定休</span>
+        <span class="meta-chip tag">テラス席</span>
+      </div>
+    </div>
+
+    <div class="card cafe fade-in" data-type="cafe">
+      <div class="card-top">
+        <div class="card-icon cafe">🌿</div>
+        <div class="card-rating">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-num">3.8</span>
+        </div>
+      </div>
+      <div class="card-name">Royal Garden Cafe 飯田橋</div>
+      <div class="card-desc">飯田橋グランブルーム2Fに構える開放的なカフェ。明るい店内でパスタやサラダをいただきながら、ゆっくり過ごせる。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 11:00〜22:00</span>
+        <span class="meta-chip tag">イタリアン</span>
+        <span class="meta-chip tag">落ち着く空間</span>
+      </div>
+    </div>
+
+    <div class="card cafe fade-in" data-type="cafe">
+      <div class="card-top">
+        <div class="card-icon cafe">🍵</div>
+        <div class="card-rating">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-num">4.4</span>
+        </div>
+      </div>
+      <div class="card-name">Shinano Cafe.</div>
+      <div class="card-desc">飯田橋の隠れ家的な小さな喫茶店。カレーやドリアなどのランチも評判が高く、ほっこり温かい雰囲気。平日のみ・15時閉店の希少スポット。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 11:00〜15:00</span>
+        <span class="meta-chip close">土日定休</span>
+        <span class="meta-chip tag">隠れ家</span>
+      </div>
+    </div>
+
+    <div class="card cafe fade-in" data-type="cafe">
+      <div class="card-top">
+        <div class="card-icon cafe">🍓</div>
+        <div class="card-rating">
+          <span class="stars">★★★☆☆</span>
+          <span class="rating-num">3.3</span>
+        </div>
+      </div>
+      <div class="card-name">果実園リーベル 飯田橋店</div>
+      <div class="card-desc">フルーツパーラーの老舗。彩り豊かなフルーツてんこ盛りのフレンチトーストが人気。甘いものでリフレッシュしたい午後に。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 8:00〜20:00</span>
+        <span class="meta-chip tag">フルーツパーラー</span>
+        <span class="meta-chip tag">朝から営業</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DRINK SECTION -->
+  <div class="section-header fade-in">
+    <span class="section-emoji">🍺</span>
+    <h2 class="section-title">昼飲み・ランチ酒OK</h2>
+    <span class="section-count">7 SPOTS</span>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card drink fade-in" data-type="drink">
+      <div class="card-top">
+        <div class="card-icon drink">🥐</div>
+        <div class="card-rating">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-num">4.0</span>
+        </div>
+      </div>
+      <div class="card-name">CAFE &amp; BAR 1363</div>
+      <div class="card-desc">神楽坂路地裏の人気カフェバー。ランチはポポーバー食べ放題付きで大満足。サッカー日本代表選手も通う名店。ゆっくりランチ酒にも最適。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 11:30〜深夜</span>
+        <span class="meta-chip close">水曜定休</span>
+        <span class="meta-chip tag">ランチあり</span>
+      </div>
+    </div>
+
+    <div class="card drink fade-in" data-type="drink">
+      <div class="card-top">
+        <div class="card-icon drink">🍺</div>
+        <div class="card-rating">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-num">3.9</span>
+        </div>
+      </div>
+      <div class="card-name">Yebisu Bar 神楽坂</div>
+      <div class="card-desc">ヱビスビール専門バー。ランチ11:30から気軽に入れるのが魅力。窓際席の景色も良く、昼のんびりビールを楽しむのに最適な場所。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 11:30〜22:45</span>
+        <span class="meta-chip tag">ビールのみ</span>
+        <span class="meta-chip tag">ランチあり</span>
+      </div>
+    </div>
+
+    <div class="card drink fade-in" data-type="drink">
+      <div class="card-top">
+        <div class="card-icon drink">🥂</div>
+        <div class="card-rating">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-num">4.2</span>
+        </div>
+      </div>
+      <div class="card-name">Private dining bar Rupo</div>
+      <div class="card-desc">外国人にも人気のダイニングバー。ランチから入れて、料理7品＋ドリンク4杯で4600円という驚きのコスパ。フレンドリーなスタッフが迎えてくれる。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 11:30〜14:00</span>
+        <span class="meta-chip tag">コスパ◎</span>
+        <span class="meta-chip tag">外国語OK</span>
+      </div>
+    </div>
+
+    <div class="card drink fade-in" data-type="drink">
+      <div class="card-top">
+        <div class="card-icon drink">🐔</div>
+        <div class="card-rating">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-num">4.0</span>
+        </div>
+      </div>
+      <div class="card-name">酒ぐら 鳥兆 飯田橋</div>
+      <div class="card-desc">焼き鳥×焼酎の居酒屋ながら、ランチも充実。チキン南蛮950円が絶品。ランチから焼酎を楽しめる貴重な存在。20〜30種の芋焼酎が揃う。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 11:30〜14:30</span>
+        <span class="meta-chip close">日曜定休</span>
+        <span class="meta-chip tag">焼鳥</span>
+      </div>
+    </div>
+
+    <div class="card drink fade-in" data-type="drink">
+      <div class="card-top">
+        <div class="card-icon drink">🍝</div>
+        <div class="card-rating">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-num">4.3</span>
+        </div>
+      </div>
+      <div class="card-name">イタリアン Strada</div>
+      <div class="card-desc">本格イタリアンでランチワインを楽しめる上質な空間。黒毛和牛のビーフタタキカルパッチョが看板メニュー。記念日ランチにもおすすめ。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 11:00〜14:30</span>
+        <span class="meta-chip tag">イタリアン</span>
+        <span class="meta-chip tag">ランチワイン</span>
+      </div>
+    </div>
+
+    <div class="card drink fade-in" data-type="drink">
+      <div class="card-top">
+        <div class="card-icon drink">🇫🇷</div>
+        <div class="card-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-num">4.8</span>
+        </div>
+      </div>
+      <div class="card-name">アティピック (Atypique)</div>
+      <div class="card-desc">フレンチ風バーが昼11時から開いている穴場。3皿のおつまみ盛り合わせ＋ワイン1000円という破格のコスパ。現金のみ。平日限定の昼飲みエース。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 11:00〜23:00</span>
+        <span class="meta-chip close">土日定休</span>
+        <span class="meta-chip tag">現金のみ</span>
+      </div>
+    </div>
+
+    <div class="card drink fade-in" data-type="drink">
+      <div class="card-top">
+        <div class="card-icon drink">✂️</div>
+        <div class="card-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-num">4.7</span>
+        </div>
+      </div>
+      <div class="card-name">FRANK'S BARBE(E)R THE STAND.</div>
+      <div class="card-desc">理髪店×クラフトビアバーという異色のコンセプト店。国産クラフトビール多数。不定期のタコナイトやイベントも人気。13時から飲める。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 13:00〜23:00</span>
+        <span class="meta-chip tag">クラフトビール</span>
+        <span class="meta-chip tag">変わり種</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SPECIAL SECTION -->
+  <div class="section-header fade-in">
+    <span class="section-emoji">💨</span>
+    <h2 class="section-title">変わり種・体験系</h2>
+    <span class="section-count">1 SPOT</span>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card special fade-in" data-type="special">
+      <div class="card-top">
+        <div class="card-icon special">💨</div>
+        <div class="card-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-num">4.9</span>
+        </div>
+      </div>
+      <div class="card-name">YOLO cafe&amp;bar</div>
+      <div class="card-desc">シーシャ（水タバコ）×カフェという隠れ家的空間。入口がわかりにくく、知る人ぞ知るスポット。バスクチーズケーキも絶品。イメージから香りをカスタムしてくれるサービスが楽しい。</div>
+      <div class="card-meta">
+        <span class="meta-chip time">🕐 14:00〜23:00</span>
+        <span class="meta-chip tag">シーシャ</span>
+        <span class="meta-chip tag">隠れ家</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- HIGHLIGHT BOX -->
+  <div class="highlight-box fade-in">
+    <div class="highlight-title">🌟 2時間で選ぶなら、ここ</div>
+    <div class="rec-list">
+      <div class="rec-item">
+        <div class="rec-name">Canal Cafe</div>
+        <div class="rec-why">天気の良い日は外濠テラスで最高の時間を。ビールやワインも楽しめるのでのんびり昼飲みにも◎</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-name">トキカフェ神楽坂</div>
+        <div class="rec-why">時間制でドリンク飲み放題。追い出されないので2時間ぴったり使い切れる。</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-name">HAYAKAWA coffee</div>
+        <div class="rec-why">評価4.9の圧倒的コーヒー体験。スペシャルティコーヒー好きなら外せない。</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-name">アティピック</div>
+        <div class="rec-why">昼から1000円でワイン＋つまみ3品。平日の昼飲みはここが最強コスパ。</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>飯田橋・神楽坂エリア 昼カフェ＆昼飲みガイド — 2025年版</p>
+</footer>
+
+<script>
+// Filter
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset.type === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+
+// Scroll fade in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, entry.target.classList.contains('card') ? (Array.from(entry.target.parentElement.children).indexOf(entry.target) % 3) * 80 : 0);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
