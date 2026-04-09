@@ -364,6 +364,41 @@ body {
   border: 1px solid rgba(201,168,76,0.2);
 }
 
+/* --- CARD BUTTON --- */
+.card-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: var(--ink);
+  color: var(--cream);
+  text-decoration: none;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-action-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s;
+}
+
+.card-action-btn:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(196,98,45,0.2);
+}
+
+.card-action-btn:hover svg {
+  transform: translateX(4px);
+}
+
 /* --- HIGHLIGHT BOX --- */
 .highlight-box {
   background: var(--ink);
@@ -520,6 +555,10 @@ footer {
         <span class="meta-chip tag">火水定休</span>
         <span class="meta-chip tag">スペシャルティ</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=HAYAKAWA+coffee+飯田橋" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="HAYAKAWA coffeeの詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <div class="card cafe fade-in" data-type="cafe">
@@ -537,6 +576,10 @@ footer {
         <span class="meta-chip tag">飲み放題</span>
         <span class="meta-chip tag">作業OK</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=トキカフェ神楽坂" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="トキカフェ神楽坂の詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <div class="card cafe fade-in" data-type="cafe">
@@ -554,6 +597,10 @@ footer {
         <span class="meta-chip close">月曜定休</span>
         <span class="meta-chip tag">テラス席</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Canal+Cafe+神楽坂" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="Canal Cafeの詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <div class="card cafe fade-in" data-type="cafe">
@@ -571,6 +618,10 @@ footer {
         <span class="meta-chip tag">イタリアン</span>
         <span class="meta-chip tag">落ち着く空間</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Royal+Garden+Cafe+飯田橋" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="Royal Garden Cafe 飯田橋の詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <div class="card cafe fade-in" data-type="cafe">
@@ -588,6 +639,10 @@ footer {
         <span class="meta-chip close">土日定休</span>
         <span class="meta-chip tag">隠れ家</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Shinano+Cafe+飯田橋" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="Shinano Cafe.の詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <div class="card cafe fade-in" data-type="cafe">
@@ -605,6 +660,10 @@ footer {
         <span class="meta-chip tag">フルーツパーラー</span>
         <span class="meta-chip tag">朝から営業</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=果実園リーベル+飯田橋店" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="果実園リーベル 飯田橋店の詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
   </div>
@@ -633,6 +692,10 @@ footer {
         <span class="meta-chip close">水曜定休</span>
         <span class="meta-chip tag">ランチあり</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=CAFE+&+BAR+1363+神楽坂" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="CAFE & BAR 1363の詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <div class="card drink fade-in" data-type="drink">
@@ -650,6 +713,10 @@ footer {
         <span class="meta-chip tag">ビールのみ</span>
         <span class="meta-chip tag">ランチあり</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Yebisu+Bar+神楽坂" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="Yebisu Bar 神楽坂の詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <div class="card drink fade-in" data-type="drink">
@@ -667,6 +734,10 @@ footer {
         <span class="meta-chip tag">コスパ◎</span>
         <span class="meta-chip tag">外国語OK</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Private+dining+bar+Rupo+飯田橋" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="Private dining bar Rupoの詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <div class="card drink fade-in" data-type="drink">
@@ -684,6 +755,10 @@ footer {
         <span class="meta-chip close">日曜定休</span>
         <span class="meta-chip tag">焼鳥</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=酒ぐら+鳥兆+飯田橋" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="酒ぐら 鳥兆 飯田橋の詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <div class="card drink fade-in" data-type="drink">
@@ -701,6 +776,10 @@ footer {
         <span class="meta-chip tag">イタリアン</span>
         <span class="meta-chip tag">ランチワイン</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=イタリアン+Strada+神楽坂" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="イタリアン Stradaの詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <div class="card drink fade-in" data-type="drink">
@@ -718,6 +797,10 @@ footer {
         <span class="meta-chip close">土日定休</span>
         <span class="meta-chip tag">現金のみ</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=アティピック+神楽坂" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="アティピック (Atypique)の詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <div class="card drink fade-in" data-type="drink">
@@ -735,6 +818,10 @@ footer {
         <span class="meta-chip tag">クラフトビール</span>
         <span class="meta-chip tag">変わり種</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=FRANK'S+BARBE(E)R+THE+STAND." target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="FRANK'S BARBE(E)R THE STAND.の詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
   </div>
@@ -763,6 +850,10 @@ footer {
         <span class="meta-chip tag">シーシャ</span>
         <span class="meta-chip tag">隠れ家</span>
       </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=YOLO+cafe&bar+神楽坂" target="_blank" rel="noopener noreferrer" class="card-action-btn" aria-label="YOLO cafe&barの詳細を見る">
+        詳細を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
   </div>
